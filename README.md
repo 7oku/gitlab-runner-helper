@@ -2,9 +2,9 @@
 
 # Gitlab Runner Helper Multi-Arch
 
-This repo has a scheduled action running to mirror the official gitlab.com Runner Helper Image with specific architecture variants into ghcr.io registry and generating a generic multi-arch manifest over it. In a mixed k8s cluster, let's say with amd4+arm64 nodes, using this image allows the runner to run on all nodes without further explicitely specifying architectures.
+This repo has a scheduled action running to mirror the official gitlab.com runner helper image with specific architecture variants into ghcr.io registry and generating a generic multi-arch manifest over it. In a mixed k8s cluster, let's say with amd64+arm64 nodes, using this image allows the runner to run on all nodes without further explicitly specifying architectures.
 
-In your Gitlab Runner config define the alternate helper image. For example, if you're using the official helm chart, you can set:
+In your Gitlab runner config define the alternate helper image. For example, if you're using the official helm chart, you can set:
 
 ```
 runners:
