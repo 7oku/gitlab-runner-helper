@@ -34,8 +34,13 @@ jobs:
       - name: Get manifest-tool
         run: go install github.com/estesp/manifest-tool/v2/cmd/manifest-tool@latest
 
-      - name: Get glab CLI
-        run: go install gitlab.com/gitlab-org/cli/cmd/glab@latest
+      - name: Get glab CLI (Building from Source to handle Go replace directives)
+        # We clone the repo and run go install from within the module directory to avoid 
+        # the "go.mod file... contains one or more replace directives" error.
+        run: |
+          git clone https://gitlab.com/gitlab-org/cli.git /tmp/glab-cli
+          cd /tmp/glab-cli
+          go install ./cmd/glab
 
       - name: Log in to registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
